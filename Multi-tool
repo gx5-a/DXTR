@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Tool | IP Logger & More</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <script>
+        function fakeIPLogger() {
+            let discordUser = document.getElementById("discordUserIP").value;
+            if (discordUser === "") {
+                alert("Please enter a Discord username.");
+                return;
+            }
+            document.getElementById("ipResult").innerHTML = "Discord User: " + discordUser + "<br>IP: " + (Math.floor(Math.random() * 255) + 1) + "." + (Math.floor(Math.random() * 255)) + "." + (Math.floor(Math.random() * 255)) + "." + (Math.floor(Math.random() * 255)) + "<br>Location: Unknown";
+        }
+        
+        function fakeGiftCard() {
+            let cardType = document.getElementById("giftCardType").value;
+            let code = "";
+            let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            for (let i = 0; i < 16; i++) {
+                code += characters.charAt(Math.floor(Math.random() * characters.length));
+                if ((i + 1) % 4 === 0 && i !== 15) code += "-";
+            }
+            document.getElementById("giftCardResult").innerHTML = "Generated " + cardType + " Code: " + code;
+        }
+        
+        function fakePasswordCrack() {
+            let discordUser = document.getElementById("discordUserPass").value;
+            if (discordUser === "") {
+                alert("Please enter a Discord username.");
+                return;
+            }
+            document.getElementById("passwordResult").innerHTML = "Cracking password for " + discordUser + "...";
+            setTimeout(() => {
+                document.getElementById("passwordResult").innerHTML = "No password found. Try again later.";
+            }, 3000);
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-white text-center p-10">
+    <h1 class="text-3xl font-bold">Multi-Tool | IP Logger & More</h1>
+    
+    <div class="mt-6 p-4 bg-gray-800 rounded-lg">
+        <h2 class="text-xl font-bold">Fake IP Logger</h2>
+        <input type="text" id="discordUserIP" placeholder="Enter Discord username" class="bg-gray-700 p-2 rounded w-full text-center mt-2">
+        <button onclick="fakeIPLogger()" class="mt-2 bg-blue-500 px-4 py-2 rounded hover:bg-blue-600">Log IP</button>
+        <p id="ipResult" class="mt-2 text-yellow-400"></p>
+    </div>
+    
+    <div class="mt-6 p-4 bg-gray-800 rounded-lg">
+        <h2 class="text-xl font-bold">Fake Gift Card Generator</h2>
+        <select id="giftCardType" class="bg-gray-700 p-2 rounded w-full">
+            <option>Amazon</option>
+            <option>Steam</option>
+            <option>PlayStation</option>
+            <option>Xbox</option>
+            <option>Google Play</option>
+        </select>
+        <button onclick="fakeGiftCard()" class="mt-2 bg-green-500 px-4 py-2 rounded hover:bg-green-600">Generate</button>
+        <p id="giftCardResult" class="mt-2 text-yellow-400"></p>
+    </div>
+    
+    <div class="mt-6 p-4 bg-gray-800 rounded-lg">
+        <h2 class="text-xl font-bold">Fake Password Cracker</h2>
+        <input type="text" id="discordUserPass" placeholder="Enter Discord username" class="bg-gray-700 p-2 rounded w-full text-center mt-2">
+        <button onclick="fakePasswordCrack()" class="mt-2 bg-red-500 px-4 py-2 rounded hover:bg-red-600">Crack</button>
+        <p id="passwordResult" class="mt-2 text-yellow-400"></p>
+    </div>
+    
+</body>
+</html>
